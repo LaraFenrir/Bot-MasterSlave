@@ -31,7 +31,7 @@ process.on('unhandledRejection', function(reason, p){
     console.log("");
     
 });
-bot.login("token")
+bot.login(token)
 
 bot.on("guildMemberAdd", member => {
   if (member.guild.id !== serverStats.guildID) return; 
