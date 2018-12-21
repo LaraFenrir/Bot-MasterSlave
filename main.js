@@ -51,7 +51,25 @@ bot.on("guildMemberRemove", member => {
   member.guild.channels.find("id", "505418627281846290").send(`:x: ${member.user.username} Est parti(e) le(la) lâche. `)
 })
  
-    bot.on('message', async message => {
+   bot.on('message', message => {
+    
+    var msgauthor = message.author.id;
+
+    if(message.author.bot)return;
+
+    if(!db.get("xp").find({user: msgauthor}).value()){
+        db.get("xp").push({user: msgauthor, xp: 1}).write();
+    }else{
+        var userxpdb = db.get("xp").filter({user: msgauthor}).find('xp').value();
+        console.log(userxpdb);
+        var userxp = Object.values(userxpdb)
+        console.log(userxp);
+        console.log(`Nombre d'xp : ${userxp[1]}`)
+
+        db.get("xp").find({user: msgauthor}).assign({user: msgauthor, xp: userxp[1] += 1}).write();
+    }
+
+bot.on('message', async message => {
     mention = message.mentions.users.first();
     var msgauthor = message.author.id;
 
