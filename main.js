@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
-const adapter = new FileSync('database.json');
+const adapter = new FileSync('./database.json');
 const storeadapter = new FileSync('store.json');
 const db = low(adapter);
 const storedb = low(storeadapter);
