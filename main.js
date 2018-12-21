@@ -51,41 +51,11 @@ bot.on("guildMemberRemove", member => {
   member.guild.channels.find("id", "505418627281846290").send(`:x: ${member.user.username} Est parti(e) le(la) lâche. `)
 })
  
-   bot.on('message', message => {
-    
-    var msgauthor = message.author.id;
-
-    if(message.author.bot)return;
-
-    if(!db.get("xp").find({user: msgauthor}).value()){
-        db.get("xp").push({user: msgauthor, xp: 1}).write();
-    }else{
-        var userxpdb = db.get("xp").filter({user: msgauthor}).find('xp').value();
-        console.log(userxpdb);
-        var userxp = Object.values(userxpdb)
-        console.log(userxp);
-        console.log(`Nombre d'xp : ${userxp[1]}`)
-
-        db.get("xp").find({user: msgauthor}).assign({user: msgauthor, xp: userxp[1] += 1}).write();
-    }
 
 bot.on('message', async message => {
     mention = message.mentions.users.first();
     var msgauthor = message.author.id;
 
-    if(message.author.bot)return;
-
-    if(!db.get("xp").find({user: msgauthor}).value()){
-        db.get("xp").push({user: msgauthor, xp: 1}).write();
-    }else{
-        var userxpdb = db.get("xp").filter({user: msgauthor}).find('xp').value();
-        console.log(userxpdb);
-        var userxp = Object.values(userxpdb)
-        console.log(userxp);
-        console.log(`Nombre d'xp : ${userxp[1]}`)
-
-        db.get("xp").find({user: msgauthor}).assign({user: msgauthor, xp: userxp[1] += 1}).write();
-    }
     
 
 
@@ -258,18 +228,6 @@ if (message.content.startsWith( prefix + "roi")) {
 
 
 
-    if(message.content === prefix + "xpstat"){
-        var xp = db.get("xp").filter({user: msgauthor}).find('xp').value()
-        var xpfinal = Object.values(xp);
-        var xp_embed = new Discord.RichEmbed()
-            .setColor('#F72BB0')
-            .setTitle(`Xp de ${message.author.username}`)
-            .setDescription("Voilà toute l'xp accumulée !")
-            .addField("XP :", `${xpfinal[1]} xp`)
-        message.channel.send({embed: xp_embed});
-    
-    
-    }
     if(message.content === prefix + 'roll') {      
       var coin = Math.floor(Math.random() * 2);
         if(coin === 0) {
@@ -717,15 +675,4 @@ if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return m
         
         
 }}}})
-//function story_random(min, max) {
-  //  min = Math.ceil(0);
-    //max = Math.floor(storynumber);
-    //randnum = Math.floor(Math.random() * (max - min +1) + min);
 
-
-//function random(min, max) {
-  //min = Math.ceil(0);
-  //max = Math.floor(3);
-  //randnum = Math.floor(Math.random() * (max - min +1) + min);}
-
-  
