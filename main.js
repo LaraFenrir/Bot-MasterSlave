@@ -383,7 +383,7 @@ if(message.mentions.users.size === 0) {
  
             }
  
-            fs.writeFile("./warns.json", JSON.stringify(warns), (err) => {if (err) console.error(err);});
+            fs.writeFile("warns.json", JSON.stringify(warns), (err) => {if (err) console.error(err);});
  
 message.delete();
  
