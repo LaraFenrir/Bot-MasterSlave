@@ -22,7 +22,7 @@ var randnum = 0
 var botenabled = true;
 var storynumber = db.get('histoires').map('story_value').value();
 var dispatcher;
-//var token = process.env.TOKEN
+var token = process.env.TOKEN
 bot.on('ready', () => {
   bot.user.setActivity("Être dev par ℒ𝓪𝓻𝓪 ℱ𝒆𝓷𝓻𝓲𝓻 [r!help}", {type: "WATCHING"});
     console.log('Bot Ready !');
@@ -31,7 +31,7 @@ process.on('unhandledRejection', function(reason, p){
     console.log("");
     
 });
-bot.login("NTIzNDc3NDg4MTE0ODYwMDQz.DvaObQ.lAN3VAPLG37xb7OcBSVNZfDoHVM   ")
+bot.login("token")
 
 bot.on("guildMemberAdd", member => {
   if (member.guild.id !== serverStats.guildID) return; 
